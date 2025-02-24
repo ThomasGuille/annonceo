@@ -15,6 +15,7 @@ define('RACINE', $_SERVER['DOCUMENT_ROOT'] . '/');
 define('URL', 'http://localhost:8000/');
 // echo '<pre>'; print_r(URL); echo '</pre>';
 
+// Failles XSS
 foreach($_POST as $key => $value){
     $_POST[$key] = htmlentities(addslashes(trim($value)));
 }
@@ -22,5 +23,6 @@ foreach($_GET as $key => $value){
     $_GET[$key] = htmlentities(addslashes(trim($value)));
 }
 
+// Importation des fonctions
 require_once("functions.php");
 ?>
