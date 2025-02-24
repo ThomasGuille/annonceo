@@ -45,6 +45,9 @@ html, body{
 .nav__dropDown{
     position: relative;
 }
+.nav__dropDown:hover{
+    cursor: pointer;
+}
 
 .member__dropdown{
     display: flex;
@@ -52,6 +55,11 @@ html, body{
 }
 
 .member__drop__link{
+    display: none;
+}
+
+.member__drop__link__active{
+    display: initial;
     display: flex;
     flex-direction: column;
     position: absolute;
