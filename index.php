@@ -48,7 +48,17 @@ require_once('include/header.php');
     </aside>
 
     <section class="section__main">
-
+        <div class="sort__dropdown">
+            <div class="dropDown">
+                <div class="sort__dropdown__btn" onclick="displayDropdown(this)">
+                    <span class="filter__item">Trier par date de mise en ligne</span>
+                    <span class="chevron__box"><i class="fa-solid fa-chevron-down chevron"></i></span>
+                </div>
+                <div class="side__dropdown__link">
+                    <?php echo 'essai dropdown js'; ?>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
     

@@ -76,7 +76,10 @@ html, body{
 
 .main{
     display: flex;
+    justify-content: space-between;
 }
+
+/* SIDE PANEL */
 
 .filter__nav{
     display: flex;
@@ -100,6 +103,7 @@ html, body{
 
 .dropDown{
     position: relative;
+    width: 100%;
 }
 
 .side__dropdown__btn{
@@ -110,6 +114,9 @@ html, body{
     border: 1px solid grey;
     padding-left: 1rem;
     border-radius: 0.25rem;
+}
+.side__dropdown__btn:hover{
+    cursor: pointer;
 }
 
 .chevron__box{
@@ -126,6 +133,26 @@ html, body{
 }
 
 .chevron{transition: all 0.5s;}
+
+/* MAIN PANEL */
+
+.section__main{
+    width: 66%;
+    margin-top: 2rem;
+}
+
+.sort__dropdown{
+    width: 50%;
+}
+
+.sort__dropdown__btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid grey;
+    padding-left: 1rem;
+    border-radius: 0.25rem;
+}
 
 
 /* FOOTER */
