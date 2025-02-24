@@ -11,12 +11,4 @@ require_once('include/header.php');
     
         </main>
     
-        <footer class="foot">
-            
-        </footer>
-    </div>
-
-</body>
-
-<script src="js/utils.js"></script>
-</html>
+<?php require_once('include/footer.php'); ?>

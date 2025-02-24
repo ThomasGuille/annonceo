@@ -41,6 +41,9 @@ html, body{
     border: none;
     border-radius: 0.25rem;
 }
+.search__input:focus{
+    outline: none;
+}
 
 .nav__dropDown{
     position: relative;
@@ -75,3 +78,16 @@ html, body{
 
 
 /* FOOTER */
+
+.foot{
+    height: 100px;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: grey;
+}
+
+.foot__link{
+    color: rgb(65, 65, 65);
+}

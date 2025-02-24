@@ -3,3 +3,4 @@ displayMemberDropdown.addEventListener("click", () => {
     const activeDropdown = document.querySelector(".member__drop__link");
     activeDropdown.classList.toggle("member__drop__link__active");
 })
+
