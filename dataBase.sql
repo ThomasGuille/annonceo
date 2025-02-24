@@ -18,9 +18,9 @@ CREATE TABLE `annonce` (
     zipcode INT(5) NOT NULL,
     record_date DATETIME NOT NULL,
     PRIMARY KEY (id_annonce),
-    FOREIGN KEY member_id REFERENCES member(id_member),
-    FOREIGN KEY photo_id REFERENCES photo(id_photo),
-    FOREIGN KEY category_id REFERENCES category(id_category)
+    FOREIGN KEY (member_id) REFERENCES member(id_member),
+    FOREIGN KEY (photo_id) REFERENCES photo(id_photo),
+    FOREIGN KEY (category_id) REFERENCES category(id_category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `member` (
@@ -35,7 +35,7 @@ CREATE TABLE `member` (
     status ENUM("admin", "member"),
     join_date DATETIME,
     PRIMARY KEY (id_member)
-) ENGIN=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `photo` (
     id_photo INT(11) NOT NULL AUTO_INCREMENT,
@@ -57,12 +57,12 @@ CREATE TABLE `category` (
 CREATE TABLE `comment` (
     id_comment INT(11) NOT NULL AUTO_INCREMENT,
     member_id INT(11) NOT NULL,
-    anncone_id INT(11) NOT NULL,
+    annonce_id INT(11) NOT NULL,
     commentary TEXT NOT NULL,
     record_date DATETIME NOT NULL,
     PRIMARY KEY (id_comment),
-    FOREIGN KEY member_id REFERENCES member(id_member),
-    FOREIGN KEY annonce_id REFERENCES annonce(id_annonce)
+    FOREIGN KEY (member_id) REFERENCES member(id_member),
+    FOREIGN KEY (annonce_id) REFERENCES annonce(id_annonce)
 ) ENGINE=InnoDB DEFAULT CHARSET utf8mb4;
 
 CREATE TABLE `note` (
@@ -72,6 +72,7 @@ CREATE TABLE `note` (
     note INT(3) NOT NULL,
     opinion TEXT NOT NULL,
     record_date DATETIME,
-    FOREIGN KEY member_id1 REFERENCES member(id_member),
-    FOREIGN KEY member_id2 REFERENCES member(id_member)
+    PRIMARY KEY (id_note),
+    FOREIGN KEY (member_id1) REFERENCES member(id_member),
+    FOREIGN KEY (member_id2) REFERENCES member(id_member)
 ) ENGINE=InnoDB DEFAULT CHARSET utf8mb4;
