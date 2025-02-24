@@ -4,6 +4,9 @@ USE annonceo;
 
 CREATE TABLE `annonce` (
     id_annonce INT(11) NOT NULL AUTO_INCREMENT,
+    member_id INT(11) NOT NULL,
+    photo_id INT(11) NOT NULL,
+    category_id INT(11) NOT NULL,
     title VARCHAR(255) NOT NULL,
     short_description VARCHAR(255) NOT NULL,
     long_description VARCHAR(255) NOT NULL,
@@ -15,9 +18,9 @@ CREATE TABLE `annonce` (
     zipcode INT(5) NOT NULL,
     record_date DATETIME NOT NULL,
     PRIMARY KEY (id_annonce),
-    FOREIGN KEY 
-    FOREIGN KEY
-    FOREIGN KEY
+    FOREIGN KEY member_id REFERENCES member(id_member),
+    FOREIGN KEY photo_id REFERENCES photo(id_photo),
+    FOREIGN KEY category_id REFERENCES category(id_category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `member` (
@@ -51,3 +54,24 @@ CREATE TABLE `category` (
     PRIMARY KEY (id_category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `comment` (
+    id_comment INT(11) NOT NULL AUTO_INCREMENT,
+    member_id INT(11) NOT NULL,
+    anncone_id INT(11) NOT NULL,
+    commentary TEXT NOT NULL,
+    record_date DATETIME NOT NULL,
+    PRIMARY KEY (id_comment),
+    FOREIGN KEY member_id REFERENCES member(id_member),
+    FOREIGN KEY annonce_id REFERENCES annonce(id_annonce)
+) ENGINE=InnoDB DEFAULT CHARSET utf8mb4;
+
+CREATE TABLE `note` (
+    id_note INT(11) NOT NULL AUTO_INCREMENT,
+    member_id1 INT(11) NOT NULL,
+    member_id2 INT(11) NOT NULL,
+    note INT(3) NOT NULL,
+    opinion TEXT NOT NULL,
+    record_date DATETIME,
+    FOREIGN KEY member_id1 REFERENCES member(id_member),
+    FOREIGN KEY member_id2 REFERENCES member(id_member)
+) ENGINE=InnoDB DEFAULT CHARSET utf8mb4;
