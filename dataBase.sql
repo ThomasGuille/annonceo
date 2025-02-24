@@ -23,6 +23,8 @@ CREATE TABLE `annonce` (
     FOREIGN KEY (category_id) REFERENCES category(id_category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE `annonce` ADD CONSTRAINT FK_MemberAnnounce FOREIGN KEY (member_id) REFERENCES member(id_member) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
 CREATE TABLE `member` (
     id_member INT(11) NOT NULL AUTO_INCREMENT,
     pseudo VARCHAR(255) NOT NULL,
