@@ -4,3 +4,7 @@ displayMemberDropdown.addEventListener("click", () => {
     activeDropdown.classList.toggle("member__drop__link__active");
 })
 
+document.displayDropdown = (item) => {
+    item.children[1].children[0].classList.toggle("fa-rotate-180");
+    item.parentNode.children[1].classList.toggle("side__dropdown__link__active");
+}

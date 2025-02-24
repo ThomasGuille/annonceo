@@ -28,8 +28,10 @@ require_once('init.php');
                     <p class="nav__link">Espace membre</p>
                 </div>
                 <div class="member__drop__link">
+                    
                     <a href="" class="drop__link">Connexion</a>
                     <a href="" class="drop__link">Inscription</a>
+
                     <a href="profile.php" class="drop__link">Profil</a>
                     <a href="" class="drop__link">Déconnexion</a>
                 </div>
