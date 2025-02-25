@@ -3,6 +3,7 @@ require_once('init.php');
 
 // echo '<pre>'; print_r($_POST); echo '</pre>';
 echo '<pre>'; print_r($_SESSION); echo '</pre>';
+// echo '<pre>'; print_r($_SERVER); echo '</pre>';
 
 // DECONNEXION
 if(isset($_GET["action"]) && $_GET["action"] == "logout"){
@@ -56,9 +57,11 @@ if(isset($_POST["submitLogIn"])){
             <a href="index.php" class="logo__link">Annonceo</a>
             <a href="" class="nav__link">Qui sommes nous</a>
             <a href="" class="nav__link">Contact</a>
-            <div class="search__field">
-                <input class="search__input" name="searchField" type="text" placeholder="Recherche...">
-            </div>
+            <?php if($_SERVER["PHP_SELF"] == "/index.php"): ?>
+                <div class="search__field">
+                    <input class="search__input" name="searchField" type="text" placeholder="Recherche...">
+                </div>
+            <?php endif; ?>
             <div class="nav__dropDown">
                 <div class="member__dropdown">
                     <i class="fa-solid fa-user icon__member"></i>

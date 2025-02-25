@@ -244,6 +244,31 @@ html, body{
 }
 
 
+/* PAGE PROFIL */
+.profile__info{
+    width: 100%;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.profile__title{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.profile__segment{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid grey;
+    padding-top: 2rem;
+}
+
+
 /* FOOTER */
 
 .foot{
