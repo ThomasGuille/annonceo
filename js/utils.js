@@ -8,3 +8,9 @@ document.displayDropdown = (item) => {
     item.children[1].children[0].classList.toggle("fa-rotate-180");
     item.parentNode.children[1].classList.toggle("side__dropdown__link__active");
 }
+
+const displaySigninModal = document.querySelector(".signIn__link");
+displaySigninModal.addEventListener("click", () => {
+    const signInModal = document.querySelector(".signIn");
+    signInModal.classList.add("signIn__active");
+})
