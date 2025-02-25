@@ -11,6 +11,12 @@ document.displayDropdown = (item) => {
 
 const displaySigninModal = document.querySelector(".signIn__link");
 displaySigninModal.addEventListener("click", () => {
-    const signInModal = document.querySelector(".signIn");
+    const signInModal = document.querySelector(".signInModal");
     signInModal.classList.add("signIn__active");
+})
+
+const displayLoginModal = document.querySelector(".logIn__link");
+displayLoginModal.addEventListener("click", () => {
+    const logInModal = document.querySelector(".logInModal");
+    logInModal.classList.add("signIn__active");
 })
