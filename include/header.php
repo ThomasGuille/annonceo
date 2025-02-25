@@ -48,7 +48,7 @@ if(isset($_POST["submitLogIn"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Annonceo Accueil</title>
+    <title>Annonceo</title>
 </head>
 <body>
 
@@ -73,6 +73,7 @@ if(isset($_POST["submitLogIn"])){
                     <p href="" class="drop__link signIn__link">Inscription</p>
                     <?php else: ?>
                     <a href="profile.php" class="drop__link">Profil</a>
+                    <a href="announce_deposit.php" class="drop__link">Déposer une annonce</a>
                     <a href="?action=logout" class="drop__link">Déconnexion</a>
                     <?php endif; ?>
                 </div>

@@ -269,6 +269,31 @@ html, body{
 }
 
 
+/* PAGE ANNONCE */
+.announce__deposit__main{
+    width: 100%;
+}
+
+.deposit__fields__block{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.deposit__form{
+    width: 50%;
+}
+
+.deposit__field{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.picture__select{
+    width: 20%;
+}
+
+
 /* FOOTER */
 
 .foot{

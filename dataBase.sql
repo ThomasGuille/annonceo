@@ -78,3 +78,6 @@ CREATE TABLE `note` (
     FOREIGN KEY (member_id1) REFERENCES member(id_member),
     FOREIGN KEY (member_id2) REFERENCES member(id_member)
 ) ENGINE=InnoDB DEFAULT CHARSET utf8mb4;
+
+
+INSERT INTO category VALUES (DEFAULT, 'autres', "...");
