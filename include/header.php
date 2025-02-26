@@ -82,7 +82,7 @@ if(isset($_POST["submitLogIn"])){
                     <input class="search__input" name="searchField" type="text" placeholder="Recherche...">
                 </div>
             <?php endif; ?>
-            <div class="nav__dropDown">
+            <div class="nav__dropDown" onclick="DropdownDisplay(this)">
                 <div class="member__dropdown">
                     <i class="fa-solid fa-user icon__member"></i>
                     <p class="nav__link">Espace membre</p>
@@ -99,7 +99,7 @@ if(isset($_POST["submitLogIn"])){
                 </div>
             </div>
             <?php if(adminConnected()): ?>
-                <div class="nav__dropDown">
+                <div class="nav__dropDown" onclick="DropdownDisplay(this)">
                     <div class="member__dropdown">
                         <i class="fa-solid fa-user icon__member"></i>
                         <p class="nav__link">BackOffice</p>
