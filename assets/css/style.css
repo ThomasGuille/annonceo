@@ -281,6 +281,7 @@ html, body{
 /* PAGE DEPOT ANNONCE */
 .announce__deposit__main{
     width: 100%;
+    min-height: 75vh;
 }
 
 .deposit__fields__block{
@@ -306,6 +307,7 @@ html, body{
 /* PAGE DETAILS ANNONCE */
 .details__announce{
     margin-top: 2rem;
+    min-height: 75vh;
 }
 
 .details__head{
@@ -325,16 +327,25 @@ html, body{
 }
 
 .photo{
+    width: 50%;
+}
+
+.photo__box{
     width: 100%;
+    height: 500px;
 }
 
 .photo__big{
     max-width: 100%;
-    height: 500px;
+    max-height: 100%;
 }
 
 .photo__small{
     width: 20%;
+}
+
+.text{
+    width: 50%;
 }
 
 .description__title{

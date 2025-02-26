@@ -33,7 +33,8 @@ require_once('include/header.php');
         <hr>
         <div class="photo__text">
             <div class="photo">
-                <img src="<?= $pictures["photo1"]; ?>" alt="" class="photo__big">
+                <div class="photo__box"><img src="<?= $pictures["photo1"]; ?>" alt="" class="photo__big"></div>
+                <br>
                 <div class="photo__select">
                     <?php foreach($pictures as $key => $value): if(!empty($value)): ?>
                         <img class="photo__small" src="<?= $value; ?>" alt="" onclick="pictureSelect(this)">
