@@ -278,7 +278,7 @@ html, body{
 }
 
 
-/* PAGE ANNONCE */
+/* PAGE DEPOT ANNONCE */
 .announce__deposit__main{
     width: 100%;
 }
@@ -301,6 +301,10 @@ html, body{
 .picture__select{
     width: 20%;
 }
+
+
+/* PAGE DETAILS ANNONCE */
+
 
 
 /* FOOTER */

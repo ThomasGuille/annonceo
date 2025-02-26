@@ -1,12 +1,47 @@
 <?php 
 require_once('include/init.php');
 
-$dbConnect->prepare("SELECT ");
+$data = $dbConnect->prepare("SELECT * FROM annonce 
+JOIN member ON annonce.member_id = member.id_member 
+WHERE annonce.id_annonce = :id");
+$data->bindValue(":id", $_GET["id"], PDO::PARAM_INT);
+$data->execute();
+
+$detailsAnnounce = $data->fetch(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($detailsAnnounce); echo '</pre>';
+
+$dataPicture = $dbConnect->prepare("SELECT photo.photo1, photo.photo2, photo.photo3, photo.photo4, photo.photo5 
+FROM photo JOIN annonce ON photo.id_photo = annonce.photo_id
+WHERE annonce.id_annonce = :idPic");
+$dataPicture->bindValue(":idPic", $_GET["id"], PDO::PARAM_INT);
+$dataPicture->execute();
+
+$pictures = $dataPicture->fetch(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($pictures); echo '</pre>';
 
 require_once('include/header.php');
 ?>
 
-
+<main class="main">
+    <section class="details__announce">
+        <div class="details__head">
+            <h3 class="announce__details__title"></h3>
+            <div class="contact__btn">Contactez moi</div>
+        </div>
+        <div class="photo__text">
+            <div class="photo">
+                <img src="" alt="" class="photo__big">
+                <div class="photo__select">
+                    
+                </div>
+            </div>
+            <div class="text">
+                <h4>Description</h4>
+                <p class="description"></p>
+            </div>
+        </div>
+    </section>
+</main>
 
 
 <?php require_once('include/footer.php'); ?>

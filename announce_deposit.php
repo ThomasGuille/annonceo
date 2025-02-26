@@ -10,7 +10,7 @@ $category = $categoryData->fetchAll(PDO::FETCH_ASSOC);
 
 
 if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
-    // echo '<pre>'; print_r($_POST); echo '</pre>';
+    echo '<pre>'; print_r($_POST); echo '</pre>';
     // echo '<pre>'; print_r($_FILES); echo '</pre>';
     $categorySelect = $dbConnect->query("SELECT * FROM category WHERE title = '$_POST[category]'");
     $categoryId = $categorySelect->fetch(PDO::FETCH_ASSOC);
