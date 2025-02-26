@@ -13,27 +13,47 @@ if(isset($_GET["action"]) && $_GET["action"] == "logout"){
 
 // INSCRIPTION
 if(isset($_POST["submitSignIn"])){
-    $data = $dbConnect->prepare("INSERT INTO member VALUES (DEFAULT, :pseudo, :password, :lastName, :firstName, :phone, :email, :sex, 'member', NOW())");
-    $data->bindValue(":pseudo", $_POST["pseudo"], PDO::PARAM_STR);
-    $data->bindValue(":password", password_hash($_POST["password"], PASSWORD_DEFAULT), PDO::PARAM_STR);
-    $data->bindValue(":lastName", $_POST["lastName"], PDO::PARAM_STR);
-    $data->bindValue(":firstName", $_POST["firstName"], PDO::PARAM_STR);
-    $data->bindValue(":phone", $_POST["phone"], PDO::PARAM_STR);
-    $data->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
-    $data->bindValue(":sex", $_POST["sex"], PDO::PARAM_STR);
-    $data->execute();
+    $error = false;
+    foreach($_POST as $key => $value){
+        if(empty($value)){
+            $errorMsg = "<small class='error__message'>Merci de  remplir ce champ</small>";
+            $error = true;
+        }
+    }
+
+    if($error === false){
+        $data = $dbConnect->prepare("INSERT INTO member VALUES (DEFAULT, :pseudo, :password, :lastName, :firstName, :phone, :email, :sex, 'member', NOW())");
+        $data->bindValue(":pseudo", $_POST["pseudo"], PDO::PARAM_STR);
+        $data->bindValue(":password", password_hash($_POST["password"], PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $data->bindValue(":lastName", $_POST["lastName"], PDO::PARAM_STR);
+        $data->bindValue(":firstName", $_POST["firstName"], PDO::PARAM_STR);
+        $data->bindValue(":phone", $_POST["phone"], PDO::PARAM_STR);
+        $data->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
+        $data->bindValue(":sex", $_POST["sex"], PDO::PARAM_STR);
+        $data->execute();
+    }
 }
 
 if(isset($_POST["submitLogIn"])){
-    $data = $dbConnect->prepare("SELECT * FROM member WHERE pseudo = :pseudoLogIn");
-    $data->bindValue(":pseudoLogIn", $_POST["pseudoLogIn"], PDO::PARAM_STR);
-    $data->execute();
+    $error = false;
+    foreach($_POST as $key => $value){
+        if(empty($value)){
+            $errorMsg = "<small class='error__message'>Merci de  remplir ce champ</small>";
+            $error = true;
+        }
+    }
 
-    if($data->rowCount()){
-        $member = $data->fetch(PDO::FETCH_ASSOC);
-        if(password_verify($_POST["passwordLogIn"], $member["password"])){
-            foreach($member as $key => $value){
-                $_SESSION["user"][$key] = $value;
+    if($error === false){
+        $data = $dbConnect->prepare("SELECT * FROM member WHERE pseudo = :pseudoLogIn");
+        $data->bindValue(":pseudoLogIn", $_POST["pseudoLogIn"], PDO::PARAM_STR);
+        $data->execute();
+    
+        if($data->rowCount()){
+            $member = $data->fetch(PDO::FETCH_ASSOC);
+            if(password_verify($_POST["passwordLogIn"], $member["password"])){
+                foreach($member as $key => $value){
+                    $_SESSION["user"][$key] = $value;
+                }
             }
         }
     }
@@ -90,16 +110,19 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="pseudo">Pseudo</label>
                         <input type="text" name="pseudo" class="signIn__input" placeholder="Votre pseudo">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="lastName">Nom</label>
                         <input type="text" name="lastName" class="signIn__input" placeholder="Votre nom">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="firstName">Prénom</label>
                         <input type="text" name="firstName" class="signIn__input" placeholder="Votre prénom">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
@@ -113,21 +136,25 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="email">Email</label>
                         <input type="email" name="email" class="signIn__input" placeholder="Votre email">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="phone">Téléphone</label>
                         <input type="text" name="phone" class="signIn__input" placeholder="Votre numéro de téléphone">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="password">Mot de passe</label>
                         <input type="password" name="password" class="signIn__input" placeholder="Votre mot de passe">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="passwordVerif">Confirmer le mot de passe</label>
                         <input type="password" name="passwordVerif" class="signIn__input" placeholder="Retapez votre mot de passe">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <button name="submitSignIn" class="signIn__btn">Inscription</button>
@@ -145,11 +172,13 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="pseudoLogIn">Pseudo</label>
                         <input type="text" name="pseudoLogIn" class="signIn__input" placeholder="Votre pseudo">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="passwordLogIn">Nom</label>
                         <input type="text" name="passwordLogIn" class="signIn__input" placeholder="Votre mot de passe">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
 
                     <button name="submitLogIn" class="signIn__btn">Connexion</button>
