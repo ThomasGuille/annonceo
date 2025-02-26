@@ -17,7 +17,7 @@ if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $error = false;
     foreach($_POST as $key => $value){
-        if(empty($value)){
+        if($key != "submit" && empty($value)){
             $errorMsg = "<small class='error__message'>Merci de  remplir ce champ</small>";
             $error = true;
         }

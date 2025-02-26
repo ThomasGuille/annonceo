@@ -1,7 +1,7 @@
 <?php 
 require_once('init.php');
 
-// echo '<pre>'; print_r($_POST); echo '</pre>';
+echo '<pre>'; print_r($_POST); echo '</pre>';
 echo '<pre>'; print_r($_SESSION); echo '</pre>';
 // echo '<pre>'; print_r($_SERVER); echo '</pre>';
 
@@ -13,15 +13,15 @@ if(isset($_GET["action"]) && $_GET["action"] == "logout"){
 
 // INSCRIPTION
 if(isset($_POST["submitSignIn"])){
-    $error = false;
+    $errorSignIn = false;
     foreach($_POST as $key => $value){
-        if(empty($value)){
-            $errorMsg = "<small class='error__message'>Merci de  remplir ce champ</small>";
-            $error = true;
+        if($key != "submitSignIn" && empty($value)){
+            $errorMsgSignIn = "<small class='error__message'>Merci de  remplir ce champ</small>";
+            $errorSignIn = true;
         }
     }
 
-    if($error === false){
+    if($errorSignIn === false){
         $data = $dbConnect->prepare("INSERT INTO member VALUES (DEFAULT, :pseudo, :password, :lastName, :firstName, :phone, :email, :sex, 'member', NOW())");
         $data->bindValue(":pseudo", $_POST["pseudo"], PDO::PARAM_STR);
         $data->bindValue(":password", password_hash($_POST["password"], PASSWORD_DEFAULT), PDO::PARAM_STR);
@@ -35,15 +35,15 @@ if(isset($_POST["submitSignIn"])){
 }
 
 if(isset($_POST["submitLogIn"])){
-    $error = false;
+    $errorLogIn = false;
     foreach($_POST as $key => $value){
-        if(empty($value)){
-            $errorMsg = "<small class='error__message'>Merci de  remplir ce champ</small>";
-            $error = true;
+        if($key != "submitLogIn" && empty($value)){
+            $errorMsgLogIn = "<small class='error__message'>Merci de  remplir ce champ</small>";
+            $errorLogIn = true;
         }
     }
 
-    if($error === false){
+    if($errorLogIn === false){
         $data = $dbConnect->prepare("SELECT * FROM member WHERE pseudo = :pseudoLogIn");
         $data->bindValue(":pseudoLogIn", $_POST["pseudoLogIn"], PDO::PARAM_STR);
         $data->execute();
@@ -110,19 +110,19 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="pseudo">Pseudo</label>
                         <input type="text" name="pseudo" class="signIn__input" placeholder="Votre pseudo">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="lastName">Nom</label>
                         <input type="text" name="lastName" class="signIn__input" placeholder="Votre nom">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="firstName">Prénom</label>
                         <input type="text" name="firstName" class="signIn__input" placeholder="Votre prénom">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <div class="signIn__field">
@@ -136,25 +136,25 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="email">Email</label>
                         <input type="email" name="email" class="signIn__input" placeholder="Votre email">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="phone">Téléphone</label>
                         <input type="text" name="phone" class="signIn__input" placeholder="Votre numéro de téléphone">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="password">Mot de passe</label>
                         <input type="password" name="password" class="signIn__input" placeholder="Votre mot de passe">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="passwordVerif">Confirmer le mot de passe</label>
                         <input type="password" name="passwordVerif" class="signIn__input" placeholder="Retapez votre mot de passe">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
                     </div>
 
                     <button name="submitSignIn" class="signIn__btn">Inscription</button>
@@ -172,13 +172,13 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="pseudoLogIn">Pseudo</label>
                         <input type="text" name="pseudoLogIn" class="signIn__input" placeholder="Votre pseudo">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgLogIn)) echo $errorMsgLogIn; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="passwordLogIn">Nom</label>
                         <input type="text" name="passwordLogIn" class="signIn__input" placeholder="Votre mot de passe">
-                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
+                        <?php if(isset($errorMsgLogIn)) echo $errorMsgLogIn; ?>
                     </div>
 
                     <button name="submitLogIn" class="signIn__btn">Connexion</button>
