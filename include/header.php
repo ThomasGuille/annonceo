@@ -2,7 +2,7 @@
 require_once('init.php');
 
 // echo '<pre>'; print_r($_POST); echo '</pre>';
-echo '<pre>'; print_r($_SESSION); echo '</pre>';
+// echo '<pre>'; print_r($_SESSION); echo '</pre>';
 // echo '<pre>'; print_r($_SERVER); echo '</pre>';
 
 // DECONNEXION
@@ -99,7 +99,7 @@ if(isset($_POST["submitLogIn"])){
                 </div>
             </div>
         </header>
-
+<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, hic impedit maiores alias omnis eos adipisci, in mollitia fugit iste rem quia esse consequuntur nesciunt voluptatibus earum similique quidem sit tenetur cum quaerat asperiores sapiente voluptas? Mollitia voluptatibus culpa perspiciatis impedit numquam repellendus reprehenderit vel laboriosam porro. Modi molestias, nam, repellat ratione hic quo rerum porro assumenda qui dignissimos quae consequatur tempore. Vero dicta rerum tempora voluptate, neque repellat dolorem illo aperiam alias eaque, magnam magni ducimus ut ipsa fugiat similique exercitationem corporis a. Hic at similique, voluptate ducimus quasi nihil, mollitia minima dicta, labore molestiae molestias ipsa placeat ea?</p>
 
         <!-- INSCRIPTION MODAL -->
 

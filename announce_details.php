@@ -8,7 +8,7 @@ $data->bindValue(":id", $_GET["id"], PDO::PARAM_INT);
 $data->execute();
 
 $detailsAnnounce = $data->fetch(PDO::FETCH_ASSOC);
-echo '<pre>'; print_r($detailsAnnounce); echo '</pre>';
+// echo '<pre>'; print_r($detailsAnnounce); echo '</pre>';
 
 $dataPicture = $dbConnect->prepare("SELECT photo.photo1, photo.photo2, photo.photo3, photo.photo4, photo.photo5 
 FROM photo JOIN annonce ON photo.id_photo = annonce.photo_id
@@ -17,7 +17,7 @@ $dataPicture->bindValue(":idPic", $_GET["id"], PDO::PARAM_INT);
 $dataPicture->execute();
 
 $pictures = $dataPicture->fetch(PDO::FETCH_ASSOC);
-echo '<pre>'; print_r($pictures); echo '</pre>';
+// echo '<pre>'; print_r($pictures); echo '</pre>';
 
 $date = date_create($detailsAnnounce["record_date"]);
 

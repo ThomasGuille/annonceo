@@ -67,7 +67,7 @@ if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
         $announceData->bindValue(":short_description", $_POST["shortDesc"], PDO::PARAM_STR);
         $announceData->bindValue(":long_description", $_POST["longDesc"], PDO::PARAM_STR);
         $announceData->bindValue(":price", $_POST["price"]);
-        $announceData->bindValue(":photo", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture1"]["name"], PDO::PARAM_STR);
+        $announceData->bindValue(":photo", URL . "assets/images-annonces/" . $_POST["title"] . "-" . $_FILES["picture1"]["name"], PDO::PARAM_STR);
         $announceData->bindValue(":country", $_POST["country"], PDO::PARAM_STR);
         $announceData->bindValue(":city", $_POST["city"], PDO::PARAM_STR);
         $announceData->bindValue(":address", $_POST["address"], PDO::PARAM_STR);
