@@ -18,10 +18,10 @@ if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
     $error = false;
     foreach($_POST as $key => $value){
         if(empty($value)){
+            $errorMsg = "<small class='error__message'>Merci de  remplir ce champ</small>";
             $error = true;
         }
     }
-    var_dump($error);
 
     if($error === false){
         foreach($_FILES as $key => $value){
@@ -89,21 +89,25 @@ require_once('include/header.php');
                     <div class="deposit__field">
                         <label for="title" class="deposit__label">Titre</label>
                         <input type="text" name="title" class="deposit__input" placeholder="Titre de l'annonce">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
                         <label for="shortDesc" class="deposit__label">Description courte</label>
                         <textarea type="text" name="shortDesc" class="deposit__input" rows=3 placeholder="Un résumé de l'annonce"></textarea>
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
                         <label for="longDesc" class="deposit__label">Description longue</label>
                         <textarea type="text" name="longDesc" class="deposit__input" rows=5 placeholder="Description détaillée de l'annonce"></textarea>
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
                         <label for="price" class="deposit__label">Prix</label>
                         <input type="text" name="price" class="deposit__input" placeholder="Prix">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
@@ -129,21 +133,25 @@ require_once('include/header.php');
                     <div class="deposit__field">
                         <label for="country" class="deposit__label">Pays</label>
                         <input type="text" name="country" class="deposit__input" placeholder="Pays">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
                         <label for="city" class="deposit__label">Ville</label>
                         <input type="text" name="city" class="deposit__input" placeholder="Ville">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
                         <label for="address" class="deposit__label">Adresse</label>
                         <textarea type="text" name="address" class="deposit__input" placeholder="Addresse" rows=3></textarea>
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
         
                     <div class="deposit__field">
                         <label for="zipcode" class="deposit__label">Code postal</label>
                         <input type="text"  name="zipcode"class="deposit__input" placeholder="Code postal">
+                        <?php if(isset($errorMsg)) echo $errorMsg; ?>
                     </div>
                 </div>
             </div>
