@@ -1,7 +1,7 @@
 <?php 
 require_once('include/init.php');
 
-$data = $dbConnect->query("SELECT annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price
+$data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price
  FROM annonce JOIN member ON annonce.member_id = member.id_member
 ");
 $announceDisp = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -69,7 +69,7 @@ require_once('include/header.php');
         <hr>
 
         <?php foreach($announceDisp as $key => $value): ?>
-            <a href="announce_details.php"><div class="card">
+            <a href="announce_details.php?id=<?= $announceDisp[$key]["id_annonce"]; ?>"><div class="card">
                 <div class="picture__box">
                     <img src="<?= $announceDisp[$key]["photo"]; ?>" alt="" class="picture">
                 </div>
