@@ -89,8 +89,8 @@ if(isset($_POST["submitLogIn"])){
                 </div>
                 <div class="member__drop__link">
                     <?php if(!userConnected()): ?>
-                    <p href="" class="drop__link logIn__link">Connexion</p>
-                    <p href="" class="drop__link signIn__link">Inscription</p>
+                    <p class="drop__link logIn__link" onclick="displayLogInModal(this)">Connexion</p>
+                    <p class="drop__link signIn__link" onclick="displaySignInModal(this)">Inscription</p>
                     <?php else: ?>
                     <a href="profile.php" class="drop__link">Profil</a>
                     <a href="announce_deposit.php" class="drop__link">Déposer une annonce</a>

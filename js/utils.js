@@ -10,19 +10,16 @@ document.displayDropdown = (item) => {
 }
 
 document.pictureSelect = (pic) => {
-    
     const bigPicture = document.querySelector(".photo__big");
     bigPicture.src = pic.src;
 }
 
-const displaySigninModal = document.querySelector(".signIn__link");
-displaySigninModal.addEventListener("click", () => {
+document.displaySignInModal = () => {
     const signInModal = document.querySelector(".signInModal");
     signInModal.classList.add("signIn__active");
-})
+}
 
-const displayLoginModal = document.querySelector(".logIn__link");
-displayLoginModal.addEventListener("click", () => {
+document.displayLogInModal = () => {
     const logInModal = document.querySelector(".logInModal");
     logInModal.classList.add("signIn__active");
-})
+}
