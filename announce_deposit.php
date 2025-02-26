@@ -8,13 +8,12 @@ if(!userConnected()){
 $categoryData = $dbConnect->query("SELECT * FROM category");
 $category = $categoryData->fetchAll(PDO::FETCH_ASSOC);
 
-$categorySelect = $dbConnect->query("SELECT * FROM category WHERE title = '$_POST[category]'");
-$categoryId = $categorySelect->fetch(PDO::FETCH_ASSOC);
-print_r($categoryId);
 
 if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
-    echo '<pre>'; print_r($_POST); echo '</pre>';
-    echo '<pre>'; print_r($_FILES); echo '</pre>';
+    // echo '<pre>'; print_r($_POST); echo '</pre>';
+    // echo '<pre>'; print_r($_FILES); echo '</pre>';
+    $categorySelect = $dbConnect->query("SELECT * FROM category WHERE title = '$_POST[category]'");
+    $categoryId = $categorySelect->fetch(PDO::FETCH_ASSOC);
     
     foreach($_FILES as $key => $value){
         if(!empty($_FILES[$key]["name"])){
@@ -22,17 +21,13 @@ if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
             $fileUploaded = new SplFileInfo($_FILES[$key]['name']);
             
             $fileExtension = $fileUploaded->getExtension();
-            // echo $fileExtension . '<br>';
             $goodExtension = array_search($fileExtension, $allowedExtensions);
-            // echo $goodExtension;
     
             if($goodExtension === false){
     
             }else{
                 $pictureName = $_POST["title"] . "-" . $_FILES[$key]["name"];
-                $pictureUrl = URL . "assets/images_annonces/$pictureName";
                 $pictureFolder = RACINE . "assets/images-annonces/$pictureName";
-                // echo $pictureFolder;
                 copy($_FILES[$key]["tmp_name"], $pictureFolder);
             }
         }
@@ -40,13 +35,22 @@ if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $pictureData = $dbConnect->prepare("INSERT INTO photo VALUES (DEFAULT, :photo1, :photo2, :photo3, :photo4, :photo5)");
     $pictureData->bindValue(":photo1", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture1"]["name"]);
-    $pictureData->bindValue(":photo2", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture2"]["name"]);
-    $pictureData->bindValue(":photo3", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture3"]["name"]);
-    $pictureData->bindValue(":photo4", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture4"]["name"]);
-    $pictureData->bindValue(":photo5", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture5"]["name"]);
+    if(!empty($_FILES["picture2"]["name"])){
+        $pictureData->bindValue(":photo2", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture2"]["name"]);
+    }else{ $pictureData->bindValue(":photo2", NULL);}
+    if(!empty($_FILES["picture3"]["name"])){
+        $pictureData->bindValue(":photo3", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture3"]["name"]);
+    }else{ $pictureData->bindValue(":photo3", NULL);}
+    if(!empty($_FILES["picture4"]["name"])){
+        $pictureData->bindValue(":photo4", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture4"]["name"]);
+    }else{ $pictureData->bindValue(":photo4", NULL);}
+    if(!empty($_FILES["picture5"]["name"])){
+        $pictureData->bindValue(":photo5", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture5"]["name"]);
+    }else{ $pictureData->bindValue(":photo5", NULL);}
     $pictureData->execute();
+    $photoId = $dbConnect->lastInsertId();
 
-    $announceData = $dbConnect->prepare("INSERT INTO annonce VALUES (DEFAULT, :member_id, 5, :category_id, :title, :short_description, :long_description, :price, :photo, :country, :city, :address, :zipcode, NOW())");
+    $announceData = $dbConnect->prepare("INSERT INTO annonce VALUES (DEFAULT, :member_id, '$photoId', :category_id, :title, :short_description, :long_description, :price, :photo, :country, :city, :address, :zipcode, NOW())");
 
     $announceData->bindValue(":member_id", $_SESSION['user']['id_member'], PDO::PARAM_INT);
     $announceData->bindValue(":category_id", $categoryId['id_category'], PDO::PARAM_INT);
@@ -94,7 +98,6 @@ require_once('include/header.php');
                     <div class="deposit__field">
                         <label for="category" class="deposit__label">Catégorie</label>
                         <select name="category" id="category">
-                            <option value="allCat" class="category__option">Toutes les catégories</option>
                             <?php foreach($category as $value): ?>
                                 <option value="<?= $value["title"]; ?>"><?= $value["title"]; ?></option>
                             <?php endforeach; ?>
