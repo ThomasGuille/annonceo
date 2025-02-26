@@ -98,6 +98,21 @@ if(isset($_POST["submitLogIn"])){
                     <?php endif; ?>
                 </div>
             </div>
+            <?php if(adminConnected()): ?>
+                <div class="nav__dropDown">
+                    <div class="member__dropdown">
+                        <i class="fa-solid fa-user icon__member"></i>
+                        <p class="nav__link">BackOffice</p>
+                    </div>
+                    <div class="member__drop__link">
+                        <a href="" class="drop__link">Dashboard</a>
+                        <a href="" class="drop__link">Membres</a>
+                        <a href="" class="drop__link">Annonces</a>
+                        <a href="" class="drop__link">Commentaires</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
         </header>
 
 

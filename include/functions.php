@@ -7,7 +7,7 @@ function userConnected(){
 }
 
 function adminConnected(){
-    if(userConnected() && $_SESSION['user']['roles'] == 'admin') return true;
+    if(userConnected() && $_SESSION['user']['status'] == 'admin') return true;
     else
     return false;
 }
