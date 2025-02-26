@@ -14,39 +14,51 @@ print_r($categoryId);
 
 if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
     echo '<pre>'; print_r($_POST); echo '</pre>';
-    // echo '<pre>'; print_r($_FILES); echo '</pre>';
+    echo '<pre>'; print_r($_FILES); echo '</pre>';
     
-    if(!empty($_FILES["picture1"]["name"])){
-        $allowedExtensions = ["jpg", "jpeg", "png", "webp"];
-        $fileUploaded = new SplFileInfo($_FILES['picture1']['name']);
-        
-        $fileExtension = $fileUploaded->getExtension();
-        // echo $fileExtension . '<br>';
-        $goodExtension = array_search($fileExtension, $allowedExtensions);
-        // echo $goodExtension;
-
-        if($goodExtension === false){
-
-        }else{
-            $pictureName = $_POST["title"] . "-" . $_FILES["picture1"]["name"];
-            $pictureUrl = URL . "assets/images_annonces/$pictureName";
-            $pictureFolder = RACINE . "assets/images-annonces/$pictureName";
-            // echo $pictureFolder;
-            copy($_FILES["picture1"]["tmp_name"], $pictureFolder);
+    foreach($_FILES as $key => $value){
+        if(!empty($_FILES[$key]["name"])){
+            $allowedExtensions = ["jpg", "jpeg", "png", "webp"];
+            $fileUploaded = new SplFileInfo($_FILES[$key]['name']);
+            
+            $fileExtension = $fileUploaded->getExtension();
+            // echo $fileExtension . '<br>';
+            $goodExtension = array_search($fileExtension, $allowedExtensions);
+            // echo $goodExtension;
+    
+            if($goodExtension === false){
+    
+            }else{
+                $pictureName = $_POST["title"] . "-" . $_FILES[$key]["name"];
+                $pictureUrl = URL . "assets/images_annonces/$pictureName";
+                $pictureFolder = RACINE . "assets/images-annonces/$pictureName";
+                // echo $pictureFolder;
+                copy($_FILES[$key]["tmp_name"], $pictureFolder);
+            }
         }
     }
 
-    $announceData = $dbConnect->prepare("INSERT INTO annonce VALUES (DEFAULT, $_SESSION[user][id_member], photo $categoryId[id_category], :title, :short_description, :long_description, :price, :photo, :country, :city, :address, :zipcode, NOW())");
+    $pictureData = $dbConnect->prepare("INSERT INTO photo VALUES (DEFAULT, :photo1, :photo2, :photo3, :photo4, :photo5)");
+    $pictureData->bindValue(":photo1", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture1"]["name"]);
+    $pictureData->bindValue(":photo2", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture2"]["name"]);
+    $pictureData->bindValue(":photo3", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture3"]["name"]);
+    $pictureData->bindValue(":photo4", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture4"]["name"]);
+    $pictureData->bindValue(":photo5", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture5"]["name"]);
+    $pictureData->execute();
 
+    $announceData = $dbConnect->prepare("INSERT INTO annonce VALUES (DEFAULT, :member_id, 5, :category_id, :title, :short_description, :long_description, :price, :photo, :country, :city, :address, :zipcode, NOW())");
+
+    $announceData->bindValue(":member_id", $_SESSION['user']['id_member'], PDO::PARAM_INT);
+    $announceData->bindValue(":category_id", $categoryId['id_category'], PDO::PARAM_INT);
     $announceData->bindValue(":title", $_POST["title"], PDO::PARAM_STR);
     $announceData->bindValue(":short_description", $_POST["shortDesc"], PDO::PARAM_STR);
     $announceData->bindValue(":long_description", $_POST["longDesc"], PDO::PARAM_STR);
-    $announceData->bindValue(":price", $_POST["price"], PDO::PARAM_STR);
+    $announceData->bindValue(":price", $_POST["price"]);
     $announceData->bindValue(":photo", $pictureUrl, PDO::PARAM_STR);
     $announceData->bindValue(":country", $_POST["country"], PDO::PARAM_STR);
     $announceData->bindValue(":city", $_POST["city"], PDO::PARAM_STR);
     $announceData->bindValue(":address", $_POST["address"], PDO::PARAM_STR);
-    $announceData->bindValue(":zipcode", $_POST["zipcode"], PDO::PARAM_STR);
+    $announceData->bindValue(":zipcode", $_POST["zipcode"], PDO::PARAM_INT);
     $announceData->execute();
 }
 
