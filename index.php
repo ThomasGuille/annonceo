@@ -1,6 +1,12 @@
 <?php 
 require_once('include/init.php');
 
+$data = $dbConnect->query("SELECT annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price
+ FROM annonce JOIN member ON annonce.member_id = member.id_member
+");
+$announceDisp = $data->fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($announceDisp); echo '</pre>';
+
 require_once('include/header.php');
 ?>
 
@@ -62,20 +68,22 @@ require_once('include/header.php');
 
         <hr>
 
-        <div class="card">
-            <div class="picture__box">
-                <img src="assets/images/multimedia/ordinateur-01.jpg" alt="" class="picture">
-            </div>
-            <div class="details">
-                <a href=""><h2 class="details__title">Un truc à vendre</h2></a>
-                <p class="details__text">Un truc tellement formidable que tu vas pas y croire</p>
-                <div class="seller__price">
-                    <h3 class="seller">Jean-Kevin <span class="note">3 / 5</span></h3>
-                    <p class="price">850€</p>
+        <?php foreach($announceDisp as $key => $value): ?>
+            <a href="announce_details.php"><div class="card">
+                <div class="picture__box">
+                    <img src="<?= $announceDisp[$key]["photo"]; ?>" alt="" class="picture">
                 </div>
-            </div>
-        </div>
-        <hr>
+                <div class="details">
+                    <h2 class="details__title"><?= $announceDisp[$key]["title"]; ?></h2>
+                    <p class="details__text"><?= $announceDisp[$key]["short_description"]; ?></p>
+                    <div class="seller__price">
+                        <h3 class="seller"><?= $announceDisp[$key]["pseudo"]; ?> <span class="note">3 / 5</span></h3>
+                        <p class="price"><?= $announceDisp[$key]["price"]; ?>€</p>
+                    </div>
+                </div>
+            </div></a>
+            <hr>
+        <?php endforeach; ?>
 
         <a href="" class="see__more">Voir plus</a>
     </section>

@@ -43,18 +43,18 @@ if(isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] === 'POST'){
         }
     
         $pictureData = $dbConnect->prepare("INSERT INTO photo VALUES (DEFAULT, :photo1, :photo2, :photo3, :photo4, :photo5)");
-        $pictureData->bindValue(":photo1", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture1"]["name"]);
+        $pictureData->bindValue(":photo1", URL . "assets/images-annonces/" . $_POST["title"] . "-" . $_FILES["picture1"]["name"]);
         if(!empty($_FILES["picture2"]["name"])){
-            $pictureData->bindValue(":photo2", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture2"]["name"]);
+            $pictureData->bindValue(":photo2", URL . "assets/images-annonces/" . $_POST["title"] . "-" . $_FILES["picture2"]["name"]);
         }else{ $pictureData->bindValue(":photo2", NULL);}
         if(!empty($_FILES["picture3"]["name"])){
-            $pictureData->bindValue(":photo3", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture3"]["name"]);
+            $pictureData->bindValue(":photo3", URL . "assets/images-annonces/" . $_POST["title"] . "-" . $_FILES["picture3"]["name"]);
         }else{ $pictureData->bindValue(":photo3", NULL);}
         if(!empty($_FILES["picture4"]["name"])){
-            $pictureData->bindValue(":photo4", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture4"]["name"]);
+            $pictureData->bindValue(":photo4", URL . "assets/images-annonces/" . $_POST["title"] . "-" . $_FILES["picture4"]["name"]);
         }else{ $pictureData->bindValue(":photo4", NULL);}
         if(!empty($_FILES["picture5"]["name"])){
-            $pictureData->bindValue(":photo5", URL . "assets/images_annonces/" . $_POST["title"] . "-" . $_FILES["picture5"]["name"]);
+            $pictureData->bindValue(":photo5", URL . "assets/images-annonces/" . $_POST["title"] . "-" . $_FILES["picture5"]["name"]);
         }else{ $pictureData->bindValue(":photo5", NULL);}
         $pictureData->execute();
         $photoId = $dbConnect->lastInsertId();
