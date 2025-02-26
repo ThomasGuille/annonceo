@@ -5,7 +5,7 @@ $data = $dbConnect->query("SELECT annonce.photo, annonce.title, annonce.short_de
  FROM annonce JOIN member ON annonce.member_id = member.id_member
 ");
 $announceDisp = $data->fetchAll(PDO::FETCH_ASSOC);
-echo '<pre>'; print_r($announceDisp); echo '</pre>';
+// echo '<pre>'; print_r($announceDisp); echo '</pre>';
 
 require_once('include/header.php');
 ?>
