@@ -19,6 +19,8 @@ $dataPicture->execute();
 $pictures = $dataPicture->fetch(PDO::FETCH_ASSOC);
 echo '<pre>'; print_r($pictures); echo '</pre>';
 
+$date = date_create($detailsAnnounce["record_date"]);
+
 require_once('include/header.php');
 ?>
 
@@ -28,6 +30,7 @@ require_once('include/header.php');
             <h3 class="announce__details__title"><?= $detailsAnnounce["title"]; ?></h3>
             <div class="contact__btn">Contactez moi</div>
         </div>
+        <hr>
         <div class="photo__text">
             <div class="photo">
                 <img src="<?= $pictures["photo1"]; ?>" alt="" class="photo__big">
@@ -38,12 +41,16 @@ require_once('include/header.php');
                 </div>
             </div>
             <div class="text">
-                <h4>Description</h4>
-                <p class="description"></p>
+                <h4 class="description__title">Description</h4>
+                <br>
+                <p class="description"><?= $detailsAnnounce["long_description"]; ?></p>
             </div>
         </div>
         <div class="infos">
-
+            <p><span class="infos__details">Date de publication: </span><?= date_format($date, "d/m/Y"); ?></p>
+            <p>Vendeur: <?= $detailsAnnounce["pseudo"]; ?></p>
+            <p>Prix: <?= $detailsAnnounce["price"]; ?>€</p>
+            <p>Adresse: <?= $detailsAnnounce["address"]; ?>, <?= $detailsAnnounce["zipcode"]; ?> <?= $detailsAnnounce["city"]; ?>, <?= $detailsAnnounce["country"]; ?></p>
         </div>
     </section>
 </main>

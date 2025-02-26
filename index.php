@@ -1,8 +1,9 @@
 <?php 
 require_once('include/init.php');
 
-$data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price
+$data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
  FROM annonce JOIN member ON annonce.member_id = member.id_member
+ ORDER BY annonce.record_date DESC
 ");
 $announceDisp = $data->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($announceDisp); echo '</pre>';

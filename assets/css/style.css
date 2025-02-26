@@ -304,8 +304,28 @@ html, body{
 
 
 /* PAGE DETAILS ANNONCE */
+.details__announce{
+    margin-top: 2rem;
+}
+
+.details__head{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.announce__details__title{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.photo__text{
+    display: flex;
+    gap: 1rem;
+}
+
 .photo{
-    width: 50%;
+    width: 100%;
 }
 
 .photo__big{
@@ -314,6 +334,17 @@ html, body{
 
 .photo__small{
     width: 20%;
+}
+
+.description__title{
+    font-weight: 600;
+}
+
+.infos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
 }
 
 
