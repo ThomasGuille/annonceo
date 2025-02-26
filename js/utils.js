@@ -9,6 +9,12 @@ document.displayDropdown = (item) => {
     item.parentNode.children[1].classList.toggle("side__dropdown__link__active");
 }
 
+document.pictureSelect = (pic) => {
+    
+    const bigPicture = document.querySelector(".photo__big");
+    bigPicture.src = pic.src;
+}
+
 const displaySigninModal = document.querySelector(".signIn__link");
 displaySigninModal.addEventListener("click", () => {
     const signInModal = document.querySelector(".signInModal");
