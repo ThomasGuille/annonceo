@@ -25,20 +25,25 @@ require_once('include/header.php');
 <main class="main">
     <section class="details__announce">
         <div class="details__head">
-            <h3 class="announce__details__title"></h3>
+            <h3 class="announce__details__title"><?= $detailsAnnounce["title"]; ?></h3>
             <div class="contact__btn">Contactez moi</div>
         </div>
         <div class="photo__text">
             <div class="photo">
-                <img src="" alt="" class="photo__big">
+                <img src="<?= $pictures["photo1"]; ?>" alt="" class="photo__big">
                 <div class="photo__select">
-                    
+                    <?php foreach($pictures as $key => $value): if(!empty($value)): ?>
+                        <img class="photo__small" src="<?= $value; ?>" alt="">
+                    <?php endif; endforeach; ?>
                 </div>
             </div>
             <div class="text">
                 <h4>Description</h4>
                 <p class="description"></p>
             </div>
+        </div>
+        <div class="infos">
+
         </div>
     </section>
 </main>
