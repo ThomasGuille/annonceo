@@ -1,5 +1,5 @@
 <footer class="backFoot">
-        
-    </footer>
+    <p class="foot__text">© Grototo 2025</p>
+</footer>
 </body>
 </html>

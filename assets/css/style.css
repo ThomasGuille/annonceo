@@ -471,3 +471,7 @@ html, body{
 .separate{
     padding: 0.25rem;
 }
+
+.foot__text{
+    text-align: center;
+}
