@@ -424,6 +424,7 @@ html, body{
 }
 
 .user__table{
+    width: 100%;
     border-collapse: collapse;
     margin-bottom: 2rem;
 }
@@ -435,6 +436,7 @@ html, body{
 }
 
 .user__table__cell, .announce__sum__cell{
+    max-width: 20%;
     border: 1px solid black;
     padding: 0.5rem 1rem;
 }
@@ -458,6 +460,10 @@ html, body{
 }
 
 .details__picture{
-    height: 100px;
+    height: 150px;
     padding: 0.5rem;
+}
+
+.separate{
+    padding: 0.25rem;
 }

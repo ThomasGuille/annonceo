@@ -5,11 +5,11 @@ if(!adminConnected()){
     header("location: ../index.php");
 }
 
-$dataSummary = $dbConnect->query("SELECT annonce.id_annonce, member.pseudo, annonce.title, annonce.short_description, annonce.photo, annonce.record_date FROM annonce JOIN member ON annonce.member_id = member.id_member");
+$dataSummary = $dbConnect->query("SELECT annonce.id_annonce, member.pseudo, annonce.title, annonce.short_description, annonce.photo, annonce.record_date FROM annonce JOIN member ON annonce.member_id = member.id_member ORDER BY annonce.record_date DESC");
 $announceSummary = $dataSummary->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($announceSummary); echo '</pre>';
 
-$dataDetails = $dbConnect->query("SELECT annonce.id_annonce, category.id_category, category.title, annonce.long_description, annonce.address, annonce.zipcode, annonce.country, annonce.price
+$dataDetails = $dbConnect->query("SELECT annonce.id_annonce, category.id_category, category.title, annonce.long_description, annonce.address, annonce.zipcode, annonce.city, annonce.country, annonce.price
 FROM annonce JOIN category ON annonce.category_id = category.id_category");
 $announceDetails = $dataDetails->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($announceDetails); echo '</pre>';
@@ -35,6 +35,8 @@ require_once("include/backheader.php");
                     <th class="user__table__title">Date de publication</th>
                 </tr>
             </thead>
+            <tr><td class="separate"></td></tr>
+            <tr><td class="separate"></td></tr>
 
             <tbody>
                 <?php foreach($announceSummary as $announce): ?>
@@ -42,10 +44,11 @@ require_once("include/backheader.php");
                         <?php foreach($announce as $key => $value): if($key != "id_annonce"): if($key == 'photo'): ?>
                             <td class="announce__sum__cell"><div class="sum__cell"><img class="photo__sum" src="<?= $value; ?>" alt="" class="photo__summary"></div></td>
                         <?php else: ?>
-                            <td class="announce__sum__cell"><?= $value; ?></td>
+                            <td class="announce__sum__cell"><div class="sum__cell"><?= $value; ?></div></td>
                         <?php endif; endif; endforeach; ?>
                         <td class="announce__eye"><a <?php if(!isset($_GET["action"])) echo "href='?action=details&id=$announce[id_annonce]'"; else echo "href='gestion_annonces.php'"; ?>><i class="fa-solid fa-eye"></i></a></td>
                     </tr>
+                    <tr><td class="separate"></td></tr>
 
                     <?php if(isset($_GET['action']) && $_GET['action'] == 'details' && $announce['id_annonce'] == $_GET['id']): ?>
                             <tr>
@@ -79,7 +82,6 @@ require_once("include/backheader.php");
                                 </tr>
                             <?php endif; endforeach; ?>
                     <?php endif; ?>
-                    <br>
                 <?php endforeach; ?>
             </tbody>
         </table>
