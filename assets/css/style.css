@@ -425,6 +425,7 @@ html, body{
 
 .user__table{
     border-collapse: collapse;
+    margin-bottom: 2rem;
 }
 
 .user__table__title{

@@ -23,11 +23,19 @@ require_once("include/backheader.php");
                 <td class="user__table__title">Date d'inscription</td>
             </tr>
 
-            <?php foreach($userData as $key => $user): if($user["status"] == "member"): ?>
+            <?php foreach($userData as $user): if($user["status"] == "member"): ?>
                 <tr class="user__table__details">
-                    <?php foreach($user as $value): ?>
+                    <?php foreach($user as $key => $value): if($key == "status"): ?>
+                        <td class="user__table__cell">
+                            <select name="status" id="status">
+                                <option value="admin">Admin</option>
+                                <option value="member">Membre</option>
+                            </select>
+                        </td>
+                    <?php else: ?>
                         <td class="user__table__cell"><?= $value ?></td>
-                    <?php endforeach; ?>
+                    <?php endif; endforeach; ?>
+
                 </tr>
             <?php endif; endforeach; ?>
         </table>
@@ -47,11 +55,19 @@ require_once("include/backheader.php");
                 <td class="user__table__title">Date d'inscription</td>
             </tr>
 
-            <?php foreach($userData as $key => $user): if($user["status"] == "admin"): ?>
+            <?php foreach($userData as $user): if($user["status"] == "admin"): ?>
                 <tr class="user__table__details">
-                    <?php foreach($user as $value): ?>
+                    <?php foreach($user as $key => $value): if($key == "status"): ?>
+                        <td class="user__table__cell">
+                            <select name="status" id="status">
+                                <option value="admin">Admin</option>
+                                <option value="member">Membre</option>
+                            </select>
+                        </td>
+                    <?php else: ?>
                         <td class="user__table__cell"><?= $value ?></td>
-                    <?php endforeach; ?>
+                    <?php endif; endforeach; ?>
+
                 </tr>
             <?php endif; endforeach; ?>
         </table>
