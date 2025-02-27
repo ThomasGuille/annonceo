@@ -434,7 +434,17 @@ html, body{
     padding: 0.5rem 1rem;
 }
 
-.user__table__cell{
+.user__table__cell, .announce__sum__cell{
     border: 1px solid black;
     padding: 0.5rem 1rem;
+}
+
+.announce__sum__cell, .photo__sum{
+    height: 100px;
+}
+
+.sum__cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
