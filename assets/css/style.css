@@ -467,3 +467,7 @@ html, body{
 .separate{
     padding: 0.25rem;
 }
+
+.active__link{
+    color: rgb(67, 67, 197);
+}

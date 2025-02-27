@@ -11,18 +11,18 @@
     <header class="backHead">
         <aside class="back__nav">
             <div class="dash__link">
-                <a href="index.php" class="back__link">Dashboard</a>
+                <a href="index.php" class="back__link <?php activeBackLink('/admin/index.php'); ?>">Dashboard</a>
             </div>
             <div class="back__menu">
                 <ul class="back__menu__list">
                     <li class="back__menu__link">
-                        <a href="gestion_members.php" class="back__link">Membres</a>
+                        <a href="gestion_members.php" class="back__link <?php activeBackLink('/admin/gestion_members.php'); ?>">Membres</a>
                     </li>
                     <li class="back__menu__link">
-                        <a href="gestion_annonces.php" class="back__link">Annonces</a>
+                        <a href="gestion_annonces.php" class="back__link <?php activeBackLink('/admin/gestion_annonces.php'); ?>">Annonces</a>
                     </li>
                     <li class="back__menu__link">
-                        <a href="gestion_comments.php" class="back__link">Commentaires</a>
+                        <a href="gestion_comments.php" class="back__link <?php activeBackLink('/admin/gestion_comments.php'); ?>">Commentaires</a>
                     </li>
                 </ul>
             </div>

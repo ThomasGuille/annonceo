@@ -12,4 +12,9 @@ function adminConnected(){
     return false;
 }
 
+function activeBackLink($url){
+    if($_SERVER['PHP_SELF'] == $url){
+        echo 'active__link';
+    }
+}
 ?>
