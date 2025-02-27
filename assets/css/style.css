@@ -411,3 +411,29 @@ html, body{
 .back__out__menu{
     margin-top: 1rem;
 }
+
+/* Main */
+.back__main{
+    margin-left: calc(15vw + 2rem);
+    padding: 2rem;
+}
+
+.user__title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.user__table{
+    border-collapse: collapse;
+}
+
+.user__table__title{
+    border: 1px solid black;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+}
+
+.user__table__cell{
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+}
