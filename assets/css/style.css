@@ -64,10 +64,16 @@ html, body{
     display: initial;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     position: absolute;
+    background-color: rgb(142, 142, 189);
+    border: 1px solid grey;
+    box-shadow: 2px 5px 3px 4px rgba(48, 69, 100, 0.349);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
 }
 .drop__link{
-    color: grey;
+    color: rgb(255, 255, 255);
 }
 
 /* MODAL */
@@ -279,28 +285,68 @@ html, body{
 
 
 /* PAGE DEPOT ANNONCE */
+.main__depot{
+    display: flex;
+    gap: 2rem;
+}
+
 .announce__deposit__main{
     width: 100%;
     min-height: 75vh;
+    background-color: rgb(142, 142, 189);
+    padding: 0 2rem;
+}
+
+.title__h1{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.announce__deposit{
+    height: 80%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .deposit__fields__block{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    height: 100%;
 }
 
 .deposit__form{
-    width: 50%;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 5rem;
 }
 
 .deposit__field{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+
+.deposit__input{
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
 }
 
 .picture__select{
     width: 20%;
+}
+
+.deposit__btn{
+    padding: 0.25rem;
 }
 
 

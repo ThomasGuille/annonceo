@@ -81,8 +81,9 @@ require_once('include/header.php');
 ?>
 
 
-<main class="main">
+<main class="main__depot">
     <section class="announce__deposit__main">
+        <h1 class="title__h1">Déposez une annonce</h1>
         <form method="post" action="" class="announce__deposit" enctype="multipart/form-data">
             <div class="deposit__fields__block">
                 <div class="deposit__form">
