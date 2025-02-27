@@ -57,6 +57,7 @@ require_once("include/backheader.php");
                                 <th>Description</th>
                                 <th>Adresse</th>
                                 <th>Code postal</th>
+                                <th>Ville</th>
                                 <th>Pays</th>
                                 <th>Prix</th>
                             </tr>

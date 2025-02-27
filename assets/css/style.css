@@ -412,6 +412,10 @@ html, body{
     margin-top: 1rem;
 }
 
+.active__link{
+    color: rgb(67, 67, 197);
+}
+
 /* Main */
 .back__main{
     margin-left: calc(15vw + 2rem);
@@ -466,8 +470,4 @@ html, body{
 
 .separate{
     padding: 0.25rem;
-}
-
-.active__link{
-    color: rgb(67, 67, 197);
 }
