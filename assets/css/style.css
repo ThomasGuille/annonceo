@@ -377,3 +377,13 @@ html, body{
 .foot__link{
     color: rgb(65, 65, 65);
 }
+
+
+
+
+/* BACKOFFICE */
+
+/* HEADER */
+.back__nav{
+    font-size: 5rem;
+}
