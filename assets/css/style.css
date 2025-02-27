@@ -448,3 +448,16 @@ html, body{
     justify-content: center;
     align-items: center;
 }
+
+.details__display{
+    padding-top: 2rem;
+}
+
+.details__cell{
+    padding: 1rem;
+}
+
+.details__picture{
+    height: 100px;
+    padding: 0.5rem;
+}

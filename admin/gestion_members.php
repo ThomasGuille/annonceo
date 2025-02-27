@@ -1,6 +1,10 @@
 <?php 
 require_once("../include/init.php");
 
+if(!adminConnected()){
+    header("location: ../index.php");
+}
+
 // echo '<pre>'; print_r($_POST); echo '</pre>';
 
 $data = $dbConnect->query("SELECT id_member, pseudo, lastName, firstName, phone, email, civility, status, join_date FROM member");
