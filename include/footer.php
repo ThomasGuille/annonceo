@@ -4,7 +4,6 @@
     </footer>
 </div>
 
-</body>
-
 <script src="js/utils.js"></script>
+</body>
 </html>

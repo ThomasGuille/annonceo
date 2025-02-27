@@ -105,10 +105,10 @@ if(isset($_POST["submitLogIn"])){
                         <p class="nav__link">BackOffice</p>
                     </div>
                     <div class="member__drop__link">
-                        <a href="" class="drop__link">Dashboard</a>
-                        <a href="" class="drop__link">Membres</a>
-                        <a href="" class="drop__link">Annonces</a>
-                        <a href="" class="drop__link">Commentaires</a>
+                        <a href="admin/index.php" class="drop__link">Dashboard</a>
+                        <a href="admin/gestion_members.php" class="drop__link">Membres</a>
+                        <a href="admin/gestion_annonces.php" class="drop__link">Annonces</a>
+                        <a href="admin/gestion_comments.php" class="drop__link">Commentaires</a>
                     </div>
                 </div>
             <?php endif; ?>
