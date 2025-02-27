@@ -385,5 +385,29 @@ html, body{
 
 /* HEADER */
 .back__nav{
-    font-size: 5rem;
+    position: fixed;
+    width: 15vw;
+    height: 100vh;
+    padding: 2rem 1rem;
+    background-color: rgb(53, 53, 53);
+}
+
+.back__link{
+    font-size: 1.25rem;
+    color: white;
+}
+
+.dash__link{
+    height: 40px;
+    border-bottom: 1px solid white;
+}
+
+.back__menu{
+    height: 100px;
+    border-bottom: 1px solid white;
+    margin-top: 1rem;
+}
+
+.back__out__menu{
+    margin-top: 1rem;
 }
