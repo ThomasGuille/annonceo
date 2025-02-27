@@ -43,7 +43,9 @@ require_once("include/backheader.php");
                         <td class="announce__eye"><div class="sum__cell"><a href="?action=details&id=<?= $announce["id_annonce"]; ?>"><i class="fa-solid fa-eye"></i></a></div></td>
                     </tr>
 
-
+                    <?php if(isset($_GET['action']) && $_GET['action'] == 'details' && $announce['id_annonce'] == $_GET['id']): ?>
+                        <td>test</td>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
