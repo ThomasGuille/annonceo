@@ -5,6 +5,15 @@ $dataSummary = $dbConnect->query("SELECT annonce.id_annonce, member.pseudo, anno
 $announceSummary = $dataSummary->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($announceSummary); echo '</pre>';
 
+$dataDetails = $dbConnect->query("SELECT annonce.id_annonce, category.id_category, annonce.long_description, annonce.address, annonce.zipcode, annonce.country, annonce.price
+FROM annonce JOIN category ON annonce.category_id = category.id_category");
+$announceDetails = $dataDetails->fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($announceDetails); echo '</pre>';
+
+$dataPhotos = $dbConnect->query("SELECT annonce.id_annonce, photo1, photo2, photo3, photo4, photo5 FROM photo JOIN annonce ON photo.id_photo = annonce.photo_id");
+$announcePhotos = $dataPhotos->fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($announcePhotos); echo '</pre>';
+
 require_once("include/backheader.php");
 ?>
 
