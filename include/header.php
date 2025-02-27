@@ -21,6 +21,35 @@ if(isset($_POST["submitSignIn"])){
         }
     }
 
+    $dataPseudo = $dbConnect->prepare("SELECT * FROM member WHERE pseudo = :pseudo");
+    $dataPseudo->bindValue(":pseudo", $_POST["pseudo"], PDO::PARAM_STR);
+    $dataPseudo->execute();
+
+    if($dataPseudo->rowCount()){
+        $errorSignIn = true;
+        $errorPseudo = "<small class='error__message'>Ce pseudo est déjà utilisé</small>";
+    }
+
+    $dataEmail = $dbConnect->prepare("SELECT * FROM member WHERE email = :email");
+    $dataEmail->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
+    $dataEmail->execute();
+
+    if($dataEmail->rowCount()){
+        $errorSignIn = true;
+        $errorEmail = "<small class='error__message'>Cet email est déjà utilisé</small>";
+    }
+
+    $regPsw = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+    if(!preg_match($regPsw, $_POST['password'])){
+        $errorSignIn = true;
+        $errorPswStrength = "<small class='error__message'>Désolé, le mot de passe n'est pas assez fort</small>";
+    }
+
+    if($_POST['password'] != $_POST['passwordVerif']){
+        $errorSignIn = true;
+        $errorPswVerif = "<small class='error__message'>Le mot de passe ne correspond pas</small>";
+    }
+
     if($errorSignIn === false){
         $data = $dbConnect->prepare("INSERT INTO member VALUES (DEFAULT, :pseudo, :password, :lastName, :firstName, :phone, :email, :sex, 'member', NOW())");
         $data->bindValue(":pseudo", $_POST["pseudo"], PDO::PARAM_STR);
@@ -125,7 +154,7 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="pseudo">Pseudo</label>
                         <input type="text" name="pseudo" class="signIn__input" placeholder="Votre pseudo">
-                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; elseif(isset($errorPseudo)) echo $errorPseudo; ?>
                     </div>
 
                     <div class="signIn__field">
@@ -151,7 +180,7 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="email">Email</label>
                         <input type="email" name="email" class="signIn__input" placeholder="Votre email">
-                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; elseif(isset($errorEmail)) echo $errorEmail; ?>
                     </div>
 
                     <div class="signIn__field">
@@ -163,13 +192,13 @@ if(isset($_POST["submitLogIn"])){
                     <div class="signIn__field">
                         <label class="signIn__label" for="password">Mot de passe</label>
                         <input type="password" name="password" class="signIn__input" placeholder="Votre mot de passe">
-                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; elseif(isset($errorPswStrength)) echo $errorPswStrength; ?>
                     </div>
 
                     <div class="signIn__field">
                         <label class="signIn__label" for="passwordVerif">Confirmer le mot de passe</label>
                         <input type="password" name="passwordVerif" class="signIn__input" placeholder="Retapez votre mot de passe">
-                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; ?>
+                        <?php if(isset($errorMsgSignIn)) echo $errorMsgSignIn; elseif(isset($errorPswVerif)) echo $errorPswVerif; ?>
                     </div>
 
                     <button name="submitSignIn" class="signIn__btn">Inscription</button>
