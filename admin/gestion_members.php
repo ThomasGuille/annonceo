@@ -28,8 +28,8 @@ require_once("include/backheader.php");
                     <?php foreach($user as $key => $value): if($key == "status"): ?>
                         <td class="user__table__cell">
                             <select name="status" id="status">
-                                <option value="admin">Admin</option>
-                                <option value="member">Membre</option>
+                                <option <?php if($user["status"] == "admin") echo "selected"; ?> value="admin">Admin</option>
+                                <option <?php if($user["status"] == "member") echo "selected"; ?> value="member">Membre</option>
                             </select>
                         </td>
                     <?php else: ?>
@@ -60,8 +60,8 @@ require_once("include/backheader.php");
                     <?php foreach($user as $key => $value): if($key == "status"): ?>
                         <td class="user__table__cell">
                             <select name="status" id="status">
-                                <option value="admin">Admin</option>
-                                <option value="member">Membre</option>
+                                <option <?php if($user["status"] == "admin") echo "selected"; ?> value="admin">Admin</option>
+                                <option <?php if($user["status"] == "member") echo "selected"; ?> value="member">Membre</option>
                             </select>
                         </td>
                     <?php else: ?>
