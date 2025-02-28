@@ -23,11 +23,11 @@ $categoryData = $dbConnect->query("SELECT * FROM category");
 $category = $categoryData->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($category); echo '</pre>';
 
-if(isset($_GET["sort"]) && $_GET["sort"] == "categorydesc"){
-    function sortByCategory($a, $b){
-        return $a["category_id"] < $b["category_id"];
+if(isset($_GET["sort"]) && $_GET["sort"] == "pricedesc"){
+    function sortByPrice($a, $b){
+        return $a["price"] < $b["price"];
     }
-    usort($announceDisp, "sortByCategory");
+    usort($announceDisp, "sortByPrice");
 }
 
 require_once('include/header.php');
@@ -86,7 +86,7 @@ require_once('include/header.php');
                     <span class="chevron__box"><i class="fa-solid fa-chevron-down chevron"></i></span>
                 </div>
                 <div class="side__dropdown__link">
-                    <a href="?sort=categorydesc" class="dropdown__link">Trier par catégorie décroissante</a>
+                    <a href="?sort=pricedesc" class="dropdown__link">Trier par prix décroissant</a>
                 </div>
             </div>
         </div>
