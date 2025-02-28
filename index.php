@@ -1,12 +1,25 @@
 <?php 
 require_once('include/init.php');
 
-$data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
- FROM annonce JOIN member ON annonce.member_id = member.id_member
- ORDER BY annonce.record_date DESC
-");
+if(isset($_GET["category"])){
+    $data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
+     FROM annonce JOIN member ON annonce.member_id = member.id_member
+     WHERE annonce.category_id = $_GET[category]
+     ORDER BY annonce.record_date DESC
+    ");
+}else{
+    $data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
+     FROM annonce JOIN member ON annonce.member_id = member.id_member
+     ORDER BY annonce.record_date DESC
+    ");
+}
+
 $announceDisp = $data->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($announceDisp); echo '</pre>';
+
+$categoryData = $dbConnect->query("SELECT * FROM category");
+$category = $categoryData->fetchAll(PDO::FETCH_ASSOC);
+// echo '<pre>'; print_r($category); echo '</pre>';
 
 require_once('include/header.php');
 ?>
@@ -22,7 +35,9 @@ require_once('include/header.php');
                     <span class="chevron__box"><i class="fa-solid fa-chevron-down chevron"></i></span>
                 </div>
                 <div class="side__dropdown__link">
-                    <?php echo 'essai dropdown js'; ?>
+                    <?php foreach($category as $key => $value): ?>
+                        <a href="?category=<?= $value['id_category']; ?>" class="dropdown__link"><?= $value['title']; ?></a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

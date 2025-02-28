@@ -179,7 +179,10 @@ html, body{
 }
 .side__dropdown__link__active{
     position: absolute;
-    display: initial;
+    display: flex;
+    flex-direction: column;
+    background-color: cadetblue;
+    z-index: 1000;
 }
 
 .chevron{transition: all 0.5s;}
