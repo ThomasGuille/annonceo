@@ -178,11 +178,19 @@ html, body{
     display: none;
 }
 .side__dropdown__link__active{
+    width: 80%;
     position: absolute;
     display: flex;
     flex-direction: column;
-    background-color: cadetblue;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgb(142, 142, 189);
     z-index: 1000;
+}
+
+.dropdown__link{
+    width: 100%;
+    color: white;
 }
 
 .chevron{transition: all 0.5s;}

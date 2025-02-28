@@ -2,13 +2,15 @@
 require_once('include/init.php');
 
 if(isset($_GET["category"])){
-    $data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
+    $data = $dbConnect->prepare("SELECT annonce.id_annonce, annonce.category_id, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
      FROM annonce JOIN member ON annonce.member_id = member.id_member
-     WHERE annonce.category_id = $_GET[category]
+     WHERE annonce.category_id = :idCat
      ORDER BY annonce.record_date DESC
     ");
+    $data->bindValue(":idCat", $_GET["category"], PDO::PARAM_INT);
+    $data->execute();
 }else{
-    $data = $dbConnect->query("SELECT annonce.id_annonce, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
+    $data = $dbConnect->query("SELECT annonce.id_annonce, annonce.category_id, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
      FROM annonce JOIN member ON annonce.member_id = member.id_member
      ORDER BY annonce.record_date DESC
     ");
@@ -20,6 +22,13 @@ $announceDisp = $data->fetchAll(PDO::FETCH_ASSOC);
 $categoryData = $dbConnect->query("SELECT * FROM category");
 $category = $categoryData->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>'; print_r($category); echo '</pre>';
+
+if(isset($_GET["sort"]) && $_GET["sort"] == "categorydesc"){
+    function sortByCategory($a, $b){
+        return $a["category_id"] < $b["category_id"];
+    }
+    usort($announceDisp, "sortByCategory");
+}
 
 require_once('include/header.php');
 ?>
@@ -36,7 +45,7 @@ require_once('include/header.php');
                 </div>
                 <div class="side__dropdown__link">
                     <?php foreach($category as $key => $value): ?>
-                        <a href="?category=<?= $value['id_category']; ?>" class="dropdown__link"><?= $value['title']; ?></a>
+                        <a  href="?category=<?= $value['id_category']; ?>" class="dropdown__link"><?= $value['title']; ?></a>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -77,7 +86,7 @@ require_once('include/header.php');
                     <span class="chevron__box"><i class="fa-solid fa-chevron-down chevron"></i></span>
                 </div>
                 <div class="side__dropdown__link">
-                    <?php echo 'essai dropdown js'; ?>
+                    <a href="?sort=categorydesc" class="dropdown__link">Trier par catégorie décroissante</a>
                 </div>
             </div>
         </div>
