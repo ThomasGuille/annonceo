@@ -2,16 +2,18 @@
 require_once('include/init.php');
 
 if(isset($_GET["category"])){
-    $data = $dbConnect->prepare("SELECT annonce.id_annonce, annonce.category_id, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
-     FROM annonce JOIN member ON annonce.member_id = member.id_member
-     WHERE annonce.category_id = :idCat
+    $data = $dbConnect->prepare("SELECT annonce.id_annonce, category.title as category, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
+     FROM annonce JOIN member ON annonce.member_id = member.id_member 
+     JOIN category ON annonce.category_id = category.id_category
+     WHERE category.title = :idCat
      ORDER BY annonce.record_date DESC
     ");
-    $data->bindValue(":idCat", $_GET["category"], PDO::PARAM_INT);
+    $data->bindValue(":idCat", $_GET["category"], PDO::PARAM_STR);
     $data->execute();
 }else{
-    $data = $dbConnect->query("SELECT annonce.id_annonce, annonce.category_id, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
+    $data = $dbConnect->query("SELECT annonce.id_annonce, category.title as category, annonce.photo, annonce.title, annonce.short_description, member.pseudo, annonce.price, annonce.record_date
      FROM annonce JOIN member ON annonce.member_id = member.id_member
+     JOIN category ON annonce.category_id = category.id_category
      ORDER BY annonce.record_date DESC
     ");
 }
@@ -40,12 +42,12 @@ require_once('include/header.php');
             <p class="side__title">Catégories</p>
             <div class="dropDown">
                 <div class="side__dropdown__btn" onclick="displayDropdown(this)">
-                    <span class="filter__item">Toutes les catégories</span>
+                    <span class="filter__item"><?php if(isset($_GET["category"])) echo $_GET["category"]; else echo "Toutes les catégories"; ?></span>
                     <span class="chevron__box"><i class="fa-solid fa-chevron-down chevron"></i></span>
                 </div>
                 <div class="side__dropdown__link">
                     <?php foreach($category as $key => $value): ?>
-                        <a  href="?category=<?= $value['id_category']; ?>" class="dropdown__link"><?= $value['title']; ?></a>
+                        <a  <?php if(isset($_GET["category"]) && $value["title"] == $_GET["category"]) echo "href='index.php'"; else echo "href='?category=$value[title]'"; ?> class="dropdown__link"><?php if(isset($_GET["category"]) && $value['title'] == $_GET['category']) echo "Toutes les catégories"; else echo $value['title']; ?></a>
                     <?php endforeach; ?>
                 </div>
             </div>
